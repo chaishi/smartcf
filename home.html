@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>首页</title>
+		<link rel="stylesheet" href="lib/jquery.gridly/stylesheets/jquery.gridly.css" />
 		<link rel="stylesheet" href="css/home.css" />
 	</head>
 	<body>
@@ -96,16 +97,20 @@
 			
 		</div><!--content结束-->
 	</body>
-	<script type="text/javascript" src="lib/sea.js" ></script>
-	<script>
-		seajs.config({
-			base: "/smartcf/",
-			alias: {
-				"jquery": "lib/jquery-1.9.1.min",
-				"backbone": "lib/backbone.min",
-				"interface": "js/interface.js"
-			}
-		});
-		seajs.use("/smartcf/js/model/app-model");
+	
+	<!--桌面app列表中，某一个app-->
+	<script type="text/template" id="oneAppTemplate">
+		
+		<!--<div class="brick app-demo"> app-view会自动创建此div-->
+			<button class="delete-btn">移除</button>
+			<div class="app-img">
+				<img src="<%= imgUrl %>" alt="<%= imgTitle %>" />
+			</div>
+			<div class="app-title"><%= imgTitle%></div>
+		<!--</div>-->
+		
 	</script>
+	
+	<script type="text/javascript" src="lib/require.js" data-main="js/home.js"></script>
+
 </html>
