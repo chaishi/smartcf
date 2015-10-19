@@ -1,13 +1,12 @@
-define(function(require, exports, module){
+define(function(){
 	
-	exports.getAppList = 'json/app.json';
+	return {
+		//获取桌面上app列表
+		getAppList: 'json/app.json',
+		
+		//小圆点路径
+		circles: ['http://42.96.175.100/static/theme/15/images/slidebox/2.png',
+				'http://42.96.175.100/static/theme/15/images/slidebox/3.png']
+	};
 	
-	// 通过 require 引入依赖
-  	//var $ = require('jquery');
-	
-    // 通过 exports 对外提供接口
-    //exports.doSomething = ...
-
-    // 或者通过 module.exports 提供整个接口
-    //module.exports = ...
 });

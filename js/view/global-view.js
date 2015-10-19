@@ -18,7 +18,7 @@ define(['app-collection', 'app-view', 'interface', 'jquery-gridly'],
 			
 		},
 		events: {
-			
+			'click .app-guide img': 'showScreenApps'
 		},
 		addOneApp: function(oneApp) {
 			var view = new appView({model: oneApp});
@@ -35,6 +35,20 @@ define(['app-collection', 'app-view', 'interface', 'jquery-gridly'],
 			    gutter: 15, // px
 			    columns: 18
 			});
+		},
+		//将所有小圆点变成灰色
+		circleChange: function() {
+			var circleDom = $('.app-guide img');
+			circleDom.each(function(i){
+				if(i > 0 && i < circleDom.length - 1) {
+					$(this).attr({src: interfaces.circles[1]});					
+				}
+			});
+		},
+		showScreenApps: function(event) {
+			this.circleChange();
+			event.target = event.target || event.srcElement;
+			event.target.setAttribute('src', interfaces.circles[0]);
 		}
 	});
 	

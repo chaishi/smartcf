@@ -5,6 +5,7 @@ define(['backbone'], function(Backbone) {
 		template: _.template($('#oneAppTemplate').html()),
 		initialize: function() {
 			this.render();
+			//执行this.model.destroy后触发，此处属于DOM操作
 			this.listenTo(this.model, 'destroy', this.remove);
 		},
 		render: function() {
