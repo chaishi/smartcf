@@ -47,5 +47,5 @@ module.exports = function(grunt) {
 	//加载grunt依赖的任务, 代替很多个 loadNpmTasks();
     require('load-grunt-tasks')(grunt);
     //命令grunt 默认执行的任务
-    grunt.registerTask('default', ['clean', 'less', 'imagemin']);
+    grunt.registerTask('default', ['clean']);
 }
