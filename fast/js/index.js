@@ -18,6 +18,8 @@ var index = {};
 	var $north = $('#north');
 	var $taskbar = $('#taskbar');
 	var $taskbarCenter = $('#taskbar-tab-list');
+	var $menueList = $('#menue-list');
+	var $menueGroupList = $('.menue-group-list');
 	//用来计数，判断 northDom的 隐藏与显示
 	var northCount = 0;
 	//用来TAB翻页
@@ -31,13 +33,6 @@ var index = {};
 	}
 	
 	function bindEvent() {
-		
-		$('.taskbar-exit').click(function() {
-			if(confirm("确定注销登录吗？")){
-				//注销登录相关操作
-				console.log(1);
-			}
-		});
 		
 		$taskbarHide.click(function(){ 
 			if(northCount % 2 === 0) {
@@ -53,15 +48,36 @@ var index = {};
 			index.setActiveTab(index0);
 		});
 		
+		$('.menue-content-left').on('click', '.one-first-munue', function() {
+			var index0 = $(this).index();
+			setActiveMenue(index0);
+		});
+		
 		$taskbarCenter.on('click', 'span', deleteTab);
 		
-		$('.preTab').click(function() {
-			lastTab();
-		});
-		
-		$('.nextTab').click(function() {
-			nextTab();
-		});
+		document.body.onclick = function(event){
+			event = event || window.event;
+			event.target = event.target || event.srcElement;
+			
+			var domClass = event.target.getAttribute('class');
+			switch(domClass) {
+				case 'preTab': {lastTab();}break;
+				case 'nextTab': {nextTab();}break;
+				case 'taskbar-exit': {confirm('确定注销登录吗?');}break;
+				case 'scroll-down': {menueScrollDown();}break;
+				case 'scroll-up': {menueScrollUp();}break;
+				default: break;
+			}
+			
+			var domId = event.target.getAttribute('id');
+			if( domId !== 'taskbar-menu' && //点击的是“菜单”，不收起
+				$menueList.css('display') !== 'none' &&  //菜单列表已经展开才能收起
+				$menueList.find('.' + domClass.split(' '))[0] == undefined) {//点击菜单列表本身，不收起
+				$menueList.slideUp(200);
+			}else if( domId === 'taskbar-menu' ) {
+				$menueList.slideDown(200);
+			}
+		}
 	}
 	
 	/**
@@ -215,14 +231,6 @@ var index = {};
 				$('.nextTab').css({visibility: 'visible'});
 				nowTab = 0;
 				$taskbarCenter.css({marginLeft: 0});
-				
-				/*$('.preTab').click(function() {
-					lastTab();
-				});
-				
-				$('.nextTab').click(function() {
-					nextTab();
-				});*/
 			}else {
 				$('.preTab').css({visibility: 'hidden'});
 				$('.nextTab').css({visibility: 'hidden'});
@@ -233,6 +241,52 @@ var index = {};
 		var tmp = (len - 1) * 83 + 103 - $('.taskbar-tab-wrap').width();
 		$taskbarCenter.animate({marginLeft: '-' + tmp + 'px'});
 		nowTab = Math.ceil(tmp / 80) * (-1);
+	}
+	
+	//menue
+	function setActiveMenue(index0) {
+		$('.one-first-munue').each(function(i){
+			if(i === index0) {
+				$(this).addClass('active-menue');
+			}else {
+				$(this).removeClass('active-menue');
+			}
+		});
+	}
+	
+	//获取菜单分组
+	getMenueGroup();
+	function getMenueGroup() {
+		$.getJSON(
+			interfaces.getAppGroupList,
+			function(data) {
+				var html = '';
+				var htmlArr = [];
+				var list = data.groups;
+				for(var i = 0, len = list.length; i < len; i++) {
+					html = 	'<div class="one-first-munue">'
+						+		'<img class="img" src="'+list[i].iconUrl+'" />'
+						+		'<span class="title">'+list[i].groupTitle+'</span>'
+						+	'</div>';
+						htmlArr.push(html);
+				}
+				$('.menue-group-list').html(htmlArr.join(''));
+			}
+		);
+	}
+	
+	function menueScrollUp() {
+		var margin = $menueGroupList.css('marginTop')
+		var dis = parseInt( margin.slice(0, margin.length - 2) ) + 95;
+		if(dis < -6) {
+			$menueGroupList.animate({marginTop: dis + 'px' });			
+		}
+	}
+	
+	function menueScrollDown() {
+		var margin = $menueGroupList.css('marginTop')
+		var dis = parseInt( margin.slice(0, margin.length - 2) ) - 95;
+		$menueGroupList.animate({marginTop: dis + 'px'});
 	}
 	
 	$(function(){

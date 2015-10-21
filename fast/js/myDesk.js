@@ -245,6 +245,9 @@ var appsDesk = {};
 		//获取applist
 		$.getJSON(
 			interfaces.getApps,
+			{
+				index: index
+			}, 
 			function(data) {
 				var appList = $($('.app-page')[index]).find('.app-list');
 				var html = '';

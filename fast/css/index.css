@@ -288,3 +288,203 @@
 .taskbar-setting:hover {
 	background: url(http://42.96.175.100/static/theme/13/images/desktop_icons.png) -254px -25px no-repeat;;
 }
+
+/* =================================================
+ * @description 菜单列表管理模块儿
+ * ==================================================
+ */
+
+#menue-list {
+	position: relative;
+    z-index: 1;
+    width: 490px;
+    height: 520px;
+    background-color: #678ace;
+    top: 7px;
+    left: 15px;
+    box-shadow: 0 0 5px #333;
+    border-radius: 5px;
+    /*display: none;*/
+}
+
+#triangle {
+	position: relative;
+    top: -24px;
+    left: 41px;
+	width: 0;
+    height: 0;
+    border: 12px solid transparent;
+    border-bottom-color: #678ace;
+}
+
+.menue-top {
+	height: 54px;
+	margin-top: -15px;
+}
+
+.menue-top-left,
+.menue-top-right {
+	width: 50%;
+	position: absolute;
+}
+
+.menue-top-left {
+	left: 0;
+	right: 50%;
+	padding-left: 10px;
+	text-align: left;
+}
+
+.menue-top-right {
+	right: 0;
+	padding: 15px 10px 0 0;
+	text-align: right;
+}
+
+.avator,
+.username,
+.menue-cancellation,
+.menue-exit {
+	display: inline-block;
+	*display: inline;
+}
+
+.avator {
+	border-radius: 3px;
+    padding: 3px;
+    width: 38px;
+    height: 38px;
+    background-color: #fff;
+}
+
+.avator img {
+	width: 38px;
+	height: 38px;
+}
+
+.username {
+	color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.menue-cancellation {
+	width: 58px;
+    height: 24px;
+    background: url(http://42.96.175.100/static/theme/13/images/logout.jpg) 0px 0px no-repeat;
+}
+
+.menue-cancellation:hover {
+	cursor: pointer;
+	background-position: 0 -24px;	
+}
+
+.menue-exit {
+	width: 58px;
+    height: 24px;
+    background: url(http://42.96.175.100/static/theme/13/images/logout.jpg) -58px 0px no-repeat;
+}
+
+.menue-exit:hover {
+	cursor: pointer;
+	background-position: -58px -24px;	
+}
+
+.menue-content {
+	width: 480px;
+	height: 460px;
+	margin: 0 auto;
+	*zoom: 1;
+}
+
+.menue-content:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.menue-content-left,
+.menue-content-center,
+.menue-content-right {
+	float: left;
+	height: 452px;
+}
+
+.menue-content-left {
+	width: 195px;
+	font-size: 12px;
+	background-color: #e8ebf0;
+}
+
+.menue-content-center {
+	width: 180px;
+	background-color: #eaeaea;
+}
+
+.menue-content-right {
+	width: 105px;
+	background-color: #f0f0f0;
+}
+
+.one-first-munue {
+	height: 25px;
+	padding: 10px 0 0 10px;
+	background: url('http://42.96.175.100/static/theme/13/images/menu_bg.png') right 6px no-repeat;
+}
+
+.one-first-munue:hover {
+	color: #fff;
+	background-position: right -24px;
+}
+
+.one-first-munue img {
+	vertical-align: bottom;
+}
+
+.one-first-munue .title {
+	margin-left: 10px;
+}
+
+.active-menue {
+	color: #fff;
+	background-position: right -24px;
+}
+
+.active-icon {
+	
+}
+
+.scroll-down,
+.scroll-up {
+	width: 100%;
+	height: 20px;
+	cursor: pointer;
+}
+
+.scroll-up {
+	padding: 5px 0 0 0;
+	background: url('http://42.96.175.100/static/theme/10/images/scroll_arrow.png') center 0px no-repeat;
+}
+
+.scroll-up:hover {
+	background-position: center -40px;
+	background-color: #c1d4f3;
+}
+
+.scroll-down {
+	background: url('http://42.96.175.100/static/theme/10/images/scroll_arrow.png') center -20px no-repeat;
+}
+
+.scroll-down:hover {
+	background-position: center -60px;
+	background-color: #c1d4f3;
+}
+
+.menue-group-list-wrap {
+	height: 86%;
+	overflow: hidden;
+}
+
+.menue-group-list {
+	margin-top: -6px;
+}
