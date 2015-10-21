@@ -1,0 +1,290 @@
+
+/* ===================================
+ * @description layout 整体布局
+ * @author luoxue
+ * @time 20151020
+ * ===================================
+ */
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.win8_module_workflow {
+    background: url('http://42.96.175.100/static/theme/13/images/index_bg/default.png') left top repeat-x;
+}
+
+#container {
+	position: absolute;
+	width: 100% !important;
+	min-width: 600px;
+	width: 600px;
+	height: 100%;
+}
+
+#north {
+	width: 100%;
+	height: 78px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+}
+
+#taskbar {
+	width: 100%;
+	height: 40px;
+	margin-top: 78px;
+	*zoom: 1;
+}
+
+#funcbar {
+	width: 100%;
+	height: 32px;
+	background: #e0ecfd url('http://42.96.175.100/static/theme/13/images/funcbar_bg.png') left top repeat-x;
+}
+
+#content {
+	position: relative;
+	width: 100%;
+	height: calc(100% - 180px);
+	background-color: #e1eaf6;
+}
+
+#status {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 30px;
+	background-color: #2f8ac1;
+}
+
+
+/* ===================================
+ * @description #north模块儿
+ * @author luoxue
+ * @time 20151020
+ * ===================================
+ */
+
+#north-left,
+#north-right {
+	position: absolute;
+	width: 50%;	
+}
+
+#north-left {
+	left: 0;
+	right: 50%;
+	padding-left: 25px;
+}
+
+#north-left span{
+	color: #FFFFFF;
+    font-weight: bold;
+    font-size: 18pt;
+    line-height: 78px;
+}
+
+#north-right {
+	right: 0%;
+	padding: 5px 25px 0 0;
+	text-align: right;
+}
+
+#time_area {
+	font-size: 28px;
+    font-weight: bold;
+    font-family: Arial;
+}
+
+.date-font {
+	color: #fff;
+	line-height: 25px;
+    font-size: 14px;
+    font-family: 微软雅黑,宋体;
+    cursor: pointer;
+}
+
+/* ===================================
+ * @description #taskbar模块儿
+ * @author luoxue
+ * @time 20151020
+ * ===================================
+ */
+
+#taskbar-left,
+#taskbar-center,
+#taskbar-right {
+	height: 100%;
+}
+
+#taskbar-left {
+	width: 115px;
+	float: left;
+}
+
+#taskbar-center {
+	margin: 0 300px 0 115px;
+	min-width: 300px;
+	white-space: nowrap;
+	font-size: 0;
+}
+
+#taskbar-center-indemo {
+	overflow: hidden;
+}
+
+#taskbar-right {
+	width: 375px;
+	float: right;
+	text-align: right;
+	padding-right: 20px;
+	/*background-color: black;*/
+}
+
+#taskbar-menu {
+    width: 97px;
+    height: 40px;
+    margin: 0 auto;
+    background: url('http://42.96.175.100/static/theme/13/images/start_menu.png') center 0px no-repeat;
+}
+
+.taskbar-tab-wrap  {
+	display: inline-block;
+	*display: inline;
+	height: 40px;
+	overflow: hidden;
+}
+
+#taskbar-tab-list {
+	width: 200%;
+	overflow: hidden;
+	*zoom: 1;
+}
+
+#taskbar-tab-list:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.preTab,
+.nextTab {
+	width: 30px;
+    height: 35px;
+    cursor: pointer;
+    display: inline-block;
+	*display: inline;
+	vertical-align: bottom;
+	visibility: hidden;
+}
+
+.preTab {
+	background: url('http://42.96.175.100/static/theme/10/images/tabs_arrow.png') no-repeat 0px center;
+}
+
+.preTab:hover {
+	background: url('http://42.96.175.100/static/theme/10/images/tabs_arrow.png') no-repeat -60px center;
+}
+
+.nextTab {
+	background: url('http://42.96.175.100/static/theme/10/images/tabs_arrow.png') no-repeat -30px center;
+}
+
+.nextTab:hover {
+	background: url('http://42.96.175.100/static/theme/10/images/tabs_arrow.png') no-repeat -90px center;
+}
+
+.taskbar-tab {
+	float: left;
+	margin-right: 3px;
+    padding-right: 5px;
+    margin-top: 5px;
+    background: url('http://42.96.175.100/static/theme/13/images/tabs_inactive.png') no-repeat right -36px;
+}
+
+.taskbar-tab:hover {
+	cursor: pointer;
+}
+
+.taskbar-tab .tab {
+	display: inline-block;
+	padding-left: 10px;
+    padding-right: 3px;
+    min-width: 64px !important;
+    width: auto !important;
+    width: 80px;
+    text-decoration: none;
+    color: #07294f;
+    height: 35px;
+    font-size: 13px;
+    line-height: 35px;
+    text-align: center;
+    position: relative;
+    background: url('http://42.96.175.100/static/theme/13/images/tabs_inactive.png') no-repeat left 0px;
+}
+
+.taskbar-tab-active {
+    background: url('http://42.96.175.100/static/theme/13/images/tabs_active.png') no-repeat right -36px;	
+}
+
+.taskbar-tab-active .tab{
+    color: #227db2;
+    font-weight: bold;
+    background: url('http://42.96.175.100/static/theme/13/images/tabs_active.png') no-repeat left 0px;	
+}
+
+.tab-close {
+	width: 16px;
+    height: 16px;
+    margin-bottom: -4px !important;
+    margin-bottom: 2px;
+    position: relative;
+    display: inline-block;
+	*display: inline;
+    background: url('http://42.96.175.100/static/theme/10/images/tabs_close.png') 0px center no-repeat;
+}
+
+.tab-close:hover {
+	background: url('http://42.96.175.100/static/theme/10/images/tabs_close.png') -15px center no-repeat;
+}
+
+.taskbar-icon {
+	width: 25px;
+	height: 25px;
+	display: inline-block;
+	*display: inline;
+	margin: 10px 0 0 10px;
+	cursor: pointer;
+}
+
+.taskbar-hide {
+	background: url(http://42.96.175.100/static/theme/13/images/desktop_icons.png) -117px 0px no-repeat;;
+}
+
+.taskbar-exit {
+	background: url(http://42.96.175.100/static/theme/13/images/desktop_icons.png) -288px 0px no-repeat;;
+}
+
+.taskbar-exit:hover {
+	background: url(http://42.96.175.100/static/theme/13/images/desktop_icons.png) -288px -25px no-repeat;;
+}
+
+.taskbar-skin {
+	background: url(http://42.96.175.100/static/theme/13/images/desktop_icons.png) -364px 0px no-repeat;;
+}
+
+.taskbar-skin:hover {
+	background: url(http://42.96.175.100/static/theme/13/images/desktop_icons.png) -364px -25px no-repeat;;
+}
+
+.taskbar-setting {
+	background: url(http://42.96.175.100/static/theme/13/images/desktop_icons.png) -254px 0px no-repeat;;
+}
+
+.taskbar-setting:hover {
+	background: url(http://42.96.175.100/static/theme/13/images/desktop_icons.png) -254px -25px no-repeat;;
+}

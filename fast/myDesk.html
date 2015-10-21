@@ -1,0 +1,102 @@
+<!--
+	作者：luoxue
+	时间：2015-10-20
+	描述：我的桌面
+-->
+
+<link rel="stylesheet" href="lib/jquery.gridly/stylesheets/jquery.gridly.css" />
+<link rel="stylesheet" href="css/myDesk.css" />
+
+
+<!--app应用添加引导-->
+<div class="app-guide-wrap">
+	<div class="app-guide">
+		<!--小圆点数量，app屏幕数量-->
+		<img src="http://42.96.175.100/static/theme/15/images/slidebox/1.png"/>
+		<img src="http://42.96.175.100/static/theme/15/images/slidebox/2.png"/>
+		<img src="http://42.96.175.100/static/theme/15/images/slidebox/3.png"/>	
+		<img id="moreApp" src="http://42.96.175.100/static/theme/15/images/slidebox/4.png" />
+	</div>
+</div><!--app应用添加引导结束-->
+
+<div class="app-pages-wrap">
+
+	
+	<div id="app-pages" class="app-pages">
+		<!--app分屏-->
+		<div class="app-page">
+			<div class="gridly app-list">
+			  <!--<div class="brick app-demo">
+			  		<button class="delete-btn">移除</button>
+					<div class="app-img">
+						<img src="http://42.96.175.100/static/theme/15/images/app_icons/calendar.png" alt="日程安排" />
+					</div>
+					<div class="app-title">日程安排</div>
+			  </div>-->
+			</div>
+		</div><!--app分屏结束-->
+		<!--app分屏-->
+		<div class="app-page">
+			<!--app列表-->
+			<div class="gridly app-list"></div>
+		</div>
+				
+	</div>
+	
+
+</div> <!--app.page.wrap结束-->
+
+
+<!--弹出app应用管理弹框-->
+<div id="appManager">
+	<!--弹框蒙版，半透明-->
+	<div class="dialog-pannel">
+		<div class="dialog-app-content">
+			<button class="close-btn" id="closeAppMngr">关闭</button>
+			<div class="dialog-topbar">应用盒子</div>
+			<div class="dialog-guide">
+				<img src="http://42.96.175.100/static/theme/15/images/appbox/bar_btn_appset.png" /><!--应用设置-->
+				<img src="http://42.96.175.100/static/theme/15/images/appbox/bar_btn_screenset.png" /><!--分屏设置-->
+				<span class="warning-info"></span>
+			</div>
+			<!--应用设置-->
+			<div class="app-setting">
+				<div class="dialog-sidebar">
+					<div class="sidebar-up"><span class="rec-up"></span></div>
+					<div class="sidebar-middle">
+						<!--app分类列表内容如下，勿删-->
+						<!--<ul>
+							<li><img src="img/icon1.png"/>个人事务</li>
+							<li><img src="img/icon1.png"/>日程安排</li>
+							<li><img src="img/icon1.png"/>系统管理</li>
+						</ul>-->
+					</div>
+					<div class="sidebar-down"><span class="rec-down"></span></div>
+				</div>
+				<div class="dialog-app-list">
+					<!--弹框右侧app列表内容如下，勿删-->
+					<!--<div class="group-one-app">
+						<div class="one-app-img">
+							<img src="http://42.96.175.100/static/theme/15/images/app_icons/calendar.png" align="日程安排">
+						</div>
+						<div class="one-app-title">日程安排</div>
+					</div>-->
+				</div>
+			</div>
+			<!--分屏设置-->
+			<div class="screen-setting">
+				<div class="screen-num">
+					<div class="screen-num-in">
+						<span>1</span>
+						<button>删除</button>
+					</div>
+				</div>
+				<div class="screen-add">+</div>
+			</div>
+		</div>
+	</div>
+</div><!--弹出app应用管理弹框结束-->
+	
+	
+<script type="text/javascript" src="lib/jquery.gridly/javascripts/jquery.gridly.js" ></script>
+<script type="text/javascript" src="js/myDesk.js" ></script>
