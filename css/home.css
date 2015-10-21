@@ -113,6 +113,7 @@
 
 .delete-btn {
 	position: absolute;
+	right: 16px;
     padding: 2px 0px;
     z-index: 2;
     width: 33px;

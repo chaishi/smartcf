@@ -1,9 +1,23 @@
-<% _.each(apps, function(app){ %>
-<div class="brick app-demo">
-	<button class="delete-btn">移除</button>
-	<div class="app-img">
-		<img src="http://42.96.175.100/static/theme/15/images/app_icons/calendar.png" alt="日程安排" />
-	</div>
-	<div class="app-title">日程安排</div>
-</div>
-<% }); %>
+/*
+ * ==========================================================
+ * @description 某一个app在桌面中的内容
+ * @type text/template
+ * @templateId oneAppTemplate
+ * @author luoxue 
+ * @time 20151019
+ * ==========================================================
+ */
+define(function(){
+	/*<script type="text/template" id="oneAppTemplate">*/
+	
+	//<!--<div class="brick app-demo"> app-view.js会自动创建此div-->
+	
+	return '<button class="delete-btn">移除</button>'
+			+	'<div class="app-img">'
+			+		'<img src="<%= imgUrl %>" alt="<%= imgTitle %>" />'
+			+	'</div>'
+			+	'<div class="app-title"><%= imgTitle%></div>';
+		//<!--</div>-->
+		
+	/*</script>*/
+})

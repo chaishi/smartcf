@@ -9,7 +9,8 @@ require.config({
 		"app-model": "js/model/app-model",
 		"app-collection": "js/collection/app-collection",
 		"app-view": "js/view/app-view",
-		'global-view': 'js/view/global-view'
+		'global-view': 'js/view/global-view',
+		'app-tpl': 'js/tpl/app-tpl'
 	},
 	//加载非AMD规范模块
 	shim: {

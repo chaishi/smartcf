@@ -1,5 +1,13 @@
-define(['backbone'], function(Backbone) {
+define(['backbone', 'app-tpl'], function(Backbone, appTpl) {
 	
+	//加载模板
+	var script = document.createElement('script');
+	script.type = 'text/template';
+	script.id = 'oneAppTemplate';
+	script.innerHTML = appTpl;
+	document.body.appendChild(script);
+	
+	//定义appView
 	return AppView = Backbone.View.extend({
 		className: 'brick app-demo',
 		template: _.template($('#oneAppTemplate').html()),
