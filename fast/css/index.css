@@ -53,7 +53,7 @@
 }
 
 #status {
-	position: absolute;
+	position: fixed;
 	left: 0;
 	bottom: 0;
 	width: 100%;
@@ -304,7 +304,7 @@
     left: 15px;
     box-shadow: 0 0 5px #333;
     border-radius: 5px;
-    /*display: none;*/
+    display: none;
 }
 
 #triangle {
@@ -557,4 +557,60 @@
 
 .sixth {
 	background-position: -1520px -80px;
+}
+
+/* ======================================
+ * @description footer 模块儿
+ * @author luoxue
+ * @time 20151021
+ * ======================================
+ */
+
+.online-people {
+	width: 20%;
+	left: 0;
+	right: 80%;
+	position: absolute;
+	font-size: 12px;
+    color: #fff;
+    line-height: 30px;
+    padding-left: 100px;
+}
+
+.other-info {
+	width: 80%;
+	right: 0;
+	text-align: right;
+	position: absolute;
+}
+
+.display {
+	display: inline-block;
+	*display: inline;
+	vertical-align: middle;
+	margin-right: 10px;
+}
+
+.psroblem-feedback {
+	font-size: 12px;
+    color: #fff;
+    line-height: 30px;
+}
+
+.recommand,
+.message-box,
+.bu-list {
+	width: 25px;
+	height: 25px;
+}
+.recommand {
+	background: url('http://42.96.175.100/static/theme/13/images/desktop_icons.png') -323px -25px no-repeat;
+}
+
+.message-box {
+	background: url('http://42.96.175.100/static/theme/13/images/desktop_icons.png') -174px -25px no-repeat;
+}
+
+.bu-list {
+	background: url('http://42.96.175.100/static/theme/13/images/desktop_icons.png') -214px -25px no-repeat;
 }

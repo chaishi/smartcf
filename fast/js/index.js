@@ -100,10 +100,9 @@ var index = {};
 			
 			var domId = event.target.getAttribute('id');
 			if(domClass == undefined) {
-				domClass = '';
+				domClass = 'none';
 			}
-			if( domId !== 'taskbar-menu' && //点击的是“菜单”，不收起
-				$menueList.css('display') !== 'none' &&  //菜单列表已经展开才能收起
+			if($menueList.css('display') !== 'none' &&  //菜单列表已经展开才能收起
 				$menueList.find('.' + domClass.split(' '))[0] == undefined) {//点击菜单列表本身，不收起
 				$menueList.slideUp(200);
 			}else if( domId === 'taskbar-menu' ) {
