@@ -1,0 +1,67 @@
+{
+	"groups": [{
+		"groupId": "001",
+		"iconUrl": "http://42.96.175.100/static/theme/10/images/menu_icons/mytable.png",
+		"groupTitle": "个人事务"
+	},{
+		"groupId": "002",
+		"iconUrl": "http://42.96.175.100/static/theme/10/images/menu_icons/workflow.png",
+		"groupTitle": "工作流"
+	},{
+		"groupId": "003",
+		"iconUrl": "http://42.96.175.100/static/theme/10/images/menu_icons/erp.png",
+		"groupTitle": "行政办公"
+	},{
+		"groupId": "001",
+		"iconUrl": "http://42.96.175.100/static/theme/10/images/menu_icons/knowledge.png",
+		"groupTitle": "知识管理"
+	},{
+		"groupId": "002",
+		"iconUrl": "http://42.96.175.100/static/theme/10/images/menu_icons/portal.png",
+		"groupTitle": "智能门户"
+	},{
+		"groupId": "003",
+		"iconUrl": "http://42.96.175.100/static/theme/10/images/menu_icons/management_center.png",
+		"groupTitle": "管理中心"
+	},{
+		"groupId": "002",
+		"iconUrl": "http://42.96.175.100/static/theme/10/images/menu_icons/portal.png",
+		"groupTitle": "智能门户"
+	},{
+		"groupId": "003",
+		"iconUrl": "http://42.96.175.100/static/theme/10/images/menu_icons/management_center.png",
+		"groupTitle": "管理中心"
+	},{
+		"groupId": "001",
+		"iconUrl": "http://42.96.175.100/static/theme/10/images/menu_icons/mytable.png",
+		"groupTitle": "个人事务"
+	},{
+		"groupId": "002",
+		"iconUrl": "http://42.96.175.100/static/theme/10/images/menu_icons/workflow.png",
+		"groupTitle": "工作流"
+	},{
+		"groupId": "003",
+		"iconUrl": "http://42.96.175.100/static/theme/10/images/menu_icons/erp.png",
+		"groupTitle": "行政办公"
+	},{
+		"groupId": "001",
+		"iconUrl": "http://42.96.175.100/static/theme/10/images/menu_icons/knowledge.png",
+		"groupTitle": "知识管理"
+	},{
+		"groupId": "002",
+		"iconUrl": "http://42.96.175.100/static/theme/10/images/menu_icons/portal.png",
+		"groupTitle": "智能门户"
+	},{
+		"groupId": "003",
+		"iconUrl": "http://42.96.175.100/static/theme/10/images/menu_icons/management_center.png",
+		"groupTitle": "管理中心"
+	},{
+		"groupId": "002",
+		"iconUrl": "http://42.96.175.100/static/theme/10/images/menu_icons/portal.png",
+		"groupTitle": "智能门户"
+	},{
+		"groupId": "003",
+		"iconUrl": "http://42.96.175.100/static/theme/10/images/menu_icons/management_center.png",
+		"groupTitle": "管理中心"
+	}]
+}
