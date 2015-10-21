@@ -418,11 +418,15 @@
 
 .menue-content-center {
 	width: 180px;
+	font-size: 12px;
+	overflow: auto;
 	background-color: #eaeaea;
 }
 
 .menue-content-right {
 	width: 105px;
+	font-size: 14px;
+	text-align: center;
 	background-color: #f0f0f0;
 }
 
@@ -481,10 +485,76 @@
 }
 
 .menue-group-list-wrap {
-	height: 86%;
+	height: 388px;
 	overflow: hidden;
 }
 
 .menue-group-list {
 	margin-top: -6px;
+}
+
+.menue-one-app {
+	padding-left: 20px;
+    height: 30px;
+    line-height: 30px;
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    background: url('http://42.96.175.100/static/theme/13/images/menu_span_bg.png') 0px 0px no-repeat;
+}
+
+.menue-one-app:hover {
+	color: #fff;
+	background-color: #6083c7;
+}
+
+.one-fast-app {
+	width: 85px;
+	height: 66px;
+	color: #006ab6;
+	margin: 0 auto;
+	margin-top: 3px;
+}
+
+.one-fast-app:hover {
+	color: #fff;
+	border-radius: 3px;
+	cursor: pointer;
+	background-color: #678ACE;
+}
+
+.fast-app-icon {
+	width: 40px;
+	height: 40px;
+	margin: 0 auto;
+	background-position: -1519px 38px;
+	background-image: url('http://42.96.175.100/static/portal/index/icons/all.png');
+}
+
+.first: {
+	background-position: -1519px 38px;
+}
+
+.first:hover {
+	background-position: -1519px -118px;
+}
+
+.second {
+	background-position: 0 -80px;
+}
+
+.third {
+	background-position: -381px -80px;
+}
+
+.forth {
+	background-position: -760px -80px;
+}
+
+.fifth {
+	background-position: -947px -80px;
+}
+
+.sixth {
+	background-position: -1520px -80px;
 }

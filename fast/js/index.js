@@ -29,6 +29,7 @@ var index = {};
 		contentHeight();
 		setNowDate();
 		bindEvent();
+		getMenueGroup();
 		showTagContent('#content', '我的桌面');
 	}
 	
@@ -51,9 +52,37 @@ var index = {};
 		$('.menue-content-left').on('click', '.one-first-munue', function() {
 			var index0 = $(this).index();
 			setActiveMenue(index0);
+			getAppsByGroup( $(this).find('span').html() );
+		});
+		
+		$('.menue-content-right').on('click', '.one-fast-app', function() {
+			var title = $(this).find('.fast-app-title').html();
+			index.addTag(title);
+		});
+		
+		$('.menue-content-center').on('click', '.menue-one-app', function() {
+			var title = $(this).html();
+			index.addTag(title);
 		});
 		
 		$taskbarCenter.on('click', 'span', deleteTab);
+		
+		$('.menue-group-list')[0].onmousewheel = function(event){
+			var event = event || window.event;
+			if(event.wheelDelta){
+				if(event.wheelDelta === 120){
+					menueScrollUp();
+				}else {
+					menueScrollDown();
+				}
+			}else if(event.detail){
+				if(event.detail === -2) {
+					menueScrollUp();
+				}else {
+					menueScrollDown();
+				}
+			}
+		};
 		
 		document.body.onclick = function(event){
 			event = event || window.event;
@@ -70,6 +99,9 @@ var index = {};
 			}
 			
 			var domId = event.target.getAttribute('id');
+			if(domClass == undefined) {
+				domClass = '';
+			}
 			if( domId !== 'taskbar-menu' && //点击的是“菜单”，不收起
 				$menueList.css('display') !== 'none' &&  //菜单列表已经展开才能收起
 				$menueList.find('.' + domClass.split(' '))[0] == undefined) {//点击菜单列表本身，不收起
@@ -255,7 +287,6 @@ var index = {};
 	}
 	
 	//获取菜单分组
-	getMenueGroup();
 	function getMenueGroup() {
 		$.getJSON(
 			interfaces.getAppGroupList,
@@ -271,22 +302,48 @@ var index = {};
 						htmlArr.push(html);
 				}
 				$('.menue-group-list').html(htmlArr.join(''));
+				getAppsByGroup(list[0].groupTitle);
 			}
 		);
 	}
 	
 	function menueScrollUp() {
-		var margin = $menueGroupList.css('marginTop')
+		var margin = $menueGroupList.css('marginTop');
 		var dis = parseInt( margin.slice(0, margin.length - 2) ) + 95;
-		if(dis < -6) {
-			$menueGroupList.animate({marginTop: dis + 'px' });			
+		if(dis > -6) {
+			dis = -6;
 		}
+		$menueGroupList.animate({marginTop: dis + 'px' }, 'fast');			
 	}
 	
 	function menueScrollDown() {
-		var margin = $menueGroupList.css('marginTop')
+		var margin = $menueGroupList.css('marginTop');
 		var dis = parseInt( margin.slice(0, margin.length - 2) ) - 95;
-		$menueGroupList.animate({marginTop: dis + 'px'});
+		var tmp = $menueGroupList.height() - $('.menue-group-list-wrap').height();
+		if( tmp  < dis * -1) {
+			dis = tmp * (-1);
+		}
+		$menueGroupList.animate({marginTop: dis + 'px'}, 'fast');
+	}
+	
+	//根据左侧分组获取app列表
+	function getAppsByGroup(title) {
+		$.getJSON(
+			interfaces.getApps,
+			/*{
+				groupTitle: title
+			},*/
+			function(data) {
+				var list = data.img;
+				var html = '';
+				var htmlArr = [];
+				for(var i = 0, len = list.length; i < len; i++) {
+					html = '<div class="menue-one-app">'+list[i].imgTitle+'</div>';
+					htmlArr.push(html);
+				}
+				$('.menue-content-center').html(htmlArr.join(''));
+			}
+		);
 	}
 	
 	$(function(){
