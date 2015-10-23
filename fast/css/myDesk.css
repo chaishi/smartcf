@@ -95,6 +95,8 @@
 .app-title {
 	font-family: "Microsoft YaHei","Arial",simsun, sans-serif;
 	display: inline-block;
+	*display: inline;
+	*zoom: 1;
     height: 20px;
     line-height: 20px;
     font-size: 14px;
@@ -220,6 +222,8 @@
 	width: 0;
 	height: 0;
 	display: inline-block;
+	*display: inline;
+	*zoom: 1;
 	border: 6px solid transparent;
 }
 

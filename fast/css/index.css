@@ -155,6 +155,7 @@
 .taskbar-tab-wrap  {
 	display: inline-block;
 	*display: inline;
+	*zoom: 1;
 	height: 40px;
 	overflow: hidden;
 }
@@ -178,6 +179,7 @@
     cursor: pointer;
     display: inline-block;
 	*display: inline;
+	*zoom: 1;
 	vertical-align: bottom;
 	visibility: hidden;
 }
@@ -212,6 +214,8 @@
 
 .taskbar-tab .tab {
 	display: inline-block;
+	*display: inline;
+	*zoom: 1;
 	padding-left: 10px;
     padding-right: 3px;
     min-width: 64px !important;
@@ -245,6 +249,7 @@
     position: relative;
     display: inline-block;
 	*display: inline;
+	*zoom: 1;
     background: url('http://42.96.175.100/static/theme/10/images/tabs_close.png') 0px center no-repeat;
 }
 
@@ -257,6 +262,7 @@
 	height: 25px;
 	display: inline-block;
 	*display: inline;
+	*zoom: 1;
 	margin: 10px 0 0 10px;
 	cursor: pointer;
 }
@@ -347,6 +353,7 @@
 .menue-exit {
 	display: inline-block;
 	*display: inline;
+	*zoom: 1;
 }
 
 .avator {
@@ -587,6 +594,7 @@
 .display {
 	display: inline-block;
 	*display: inline;
+	*zoom: 1;
 	vertical-align: middle;
 	margin-right: 10px;
 }
