@@ -12,6 +12,7 @@
 }
 
 .win8_module_workflow {
+	overflow-y: hidden;
     background: url('http://42.96.175.100/static/theme/13/images/index_bg/default.png') left top repeat-x;
 }
 
