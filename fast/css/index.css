@@ -517,6 +517,7 @@
 .menue-one-app:hover {
 	color: #fff;
 	background-color: #6083c7;
+	background-position: 0 -30px;
 }
 
 .one-fast-app {
@@ -548,7 +549,7 @@
 	background-position: -1519px 38px;
 }
 
-.first:hover {
+.one-fast-app:hover .first {
 	background-position: -1519px -118px;
 }
 
@@ -556,20 +557,41 @@
 	background-position: 0 -80px;
 }
 
+.one-fast-app:hover .second {
+	background-position: 0px 0px;
+}
+
 .third {
 	background-position: -381px -80px;
+}
+
+.one-fast-app:hover .third {
+	background-position: -381px 0;
 }
 
 .forth {
 	background-position: -760px -80px;
 }
 
+.one-fast-app:hover .forth {
+	background-position: -760px 0;
+}
+
 .fifth {
 	background-position: -947px -80px;
 }
 
+.one-fast-app:hover .fifth {
+	background-position: -947px 0;
+}
+
+
 .sixth {
 	background-position: -1520px -80px;
+}
+
+.one-fast-app:hover .sixth {
+	background-position: -1520px 0;
 }
 
 /* ======================================
