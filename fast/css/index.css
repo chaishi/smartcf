@@ -310,6 +310,8 @@
     left: 15px;
     box-shadow: 0 0 5px #333;
     border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
     display: none;
 }
 
@@ -358,6 +360,8 @@
 
 .avator {
 	border-radius: 3px;
+	-webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
     padding: 3px;
     width: 38px;
     height: 38px;
@@ -526,6 +530,8 @@
 .one-fast-app:hover {
 	color: #fff;
 	border-radius: 3px;
+	-webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
 	cursor: pointer;
 	background-color: #678ACE;
 }
