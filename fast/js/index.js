@@ -26,7 +26,6 @@ var index = {};
 	var nowTab = 0;
 	
 	function init() {
-		contentHeight();
 		setNowDate();
 		bindEvent();
 		getMenueGroup();
@@ -109,6 +108,7 @@ var index = {};
 				$menueList.slideDown(200);
 			}
 		}
+		
 	}
 	
 	/**
@@ -134,12 +134,12 @@ var index = {};
 			}
 		});
 	}
-	
+	contentHeight();
 	//content 高度自适应兼容性处理
-	function contentHeight() {
-		$content.height(document.body.scrollHeight - 180);
+	function contentHeight () {
 		$(window).resize(function() {
-			$content.height(document.body.scrollHeight - 180);
+			height = document.body.scrollHeight || document.documentElement.scrollHeight;
+			$content.height(height - 180);
 		});
 	}
 	

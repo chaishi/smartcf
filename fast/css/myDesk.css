@@ -145,7 +145,8 @@
 
 /*默认隐藏appa管理弹框*/
 #appManager {
-	display: none;
+	visibility: hidden;
+	height: 100%;
 }
 
 /*弹框蒙版*/

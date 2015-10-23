@@ -32,6 +32,7 @@ var appsDesk = {};
 	var $screenSetting = $('.screen-setting');
 	//弹框中，分屏设置，提示信息显示Dom
 	var $warningInfo = $('.warning-info');
+	var $content = $('#content');
 	//flag用于标记弹框中，当前分组列表是第几批
 	var flag = 0;
 	//flagMax 表示分组列表一共有多少批
@@ -207,8 +208,16 @@ var appsDesk = {};
 	 * @description content应用程序
 	 ====================================================================================*/
 	
+	//content 高度自适应兼容性处理
+	function contentHeight () {
+		debugger
+		var height = document.body.scrollHeight || document.documentElement.scrollHeight;
+		$content.height(height - 180);
+	}
+	
 	//添加app应用到屏幕
 	function addAppToScreen(imgUrl, appTitle){
+		debugger
 		var appPages = $('.app-page');
 		var appList = $(appPages[nowScreen]).find('.app-list');
 		var html = '<div class="brick app-demo">'
@@ -223,17 +232,18 @@ var appsDesk = {};
 		addClickToApp();
 		initDrag();
 		//添加新的app后，content内容变化，高度重新设置
-		$('#content').height(document.body.scrollHeight - 180);
+		contentHeight();
 	}
 	
 	//页面一开始，隐藏app列表管理； 点击关闭按钮，立即关闭app应用管理弹框
 	function hidePannel() {
-		appManagerDom.style.display = 'none';
+		appManagerDom.style.visibility = 'hidden';
 	}
 	
 	//点击更多应用图标，弹出app列表管理框，并加载分类列表
 	function alertAppList() {
-		appManagerDom.style.display = 'block';
+		debugger
+		appManagerDom.style.visibility = 'visible';
 		getAppGroupList();
 		showAppSetting();
 	}
@@ -270,7 +280,8 @@ var appsDesk = {};
 				addClickToApp();
 				initDrag();
 				//加载app列表后，content内容变多，大小改变
-				$('#content').height(document.body.scrollHeight - 180);
+				contentHeight();
+				//$('#content').height(document.body.scrollHeight - 180);
 			}
 		);
 	}
