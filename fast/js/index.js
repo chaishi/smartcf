@@ -137,14 +137,10 @@ var index = {};
 	
 	//content 高度自适应兼容性处理
 	function contentHeight() {
-		/*$content.height() <= 18 表示浏览器不支持css3中的calc()函数 , ie7有最小高度*/
-		if($content.height() <= 18){
-			var $container = $('#container');
-			$content.height($container.height() - 180);
-			$(window).resize(function() {
-				$content.height($container.height() - 180);
-			});
-		}
+		$content.height(document.body.scrollHeight - 180);
+		$(window).resize(function() {
+			$content.height(document.body.scrollHeight - 180);
+		});
 	}
 	
 	//设置当前日历

@@ -222,6 +222,8 @@ var appsDesk = {};
 		addHoverEvent();
 		addClickToApp();
 		initDrag();
+		//添加新的app后，content内容变化，高度重新设置
+		$('#content').height(document.body.scrollHeight - 180);
 	}
 	
 	//页面一开始，隐藏app列表管理； 点击关闭按钮，立即关闭app应用管理弹框
@@ -267,6 +269,8 @@ var appsDesk = {};
 				addHoverEvent();
 				addClickToApp();
 				initDrag();
+				//加载app列表后，content内容变多，大小改变
+				$('#content').height(document.body.scrollHeight - 180);
 			}
 		);
 	}

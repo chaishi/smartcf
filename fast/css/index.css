@@ -26,6 +26,7 @@
 #north {
 	width: 100%;
 	height: 78px;
+	min-width: 800px;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -35,6 +36,7 @@
 #taskbar {
 	width: 100%;
 	height: 40px;
+	min-width: 800px;
 	margin-top: 78px;
 	*zoom: 1;
 }
@@ -42,12 +44,14 @@
 #funcbar {
 	width: 100%;
 	height: 32px;
+	min-width: 800px;
 	background: #e0ecfd url('http://42.96.175.100/static/theme/13/images/funcbar_bg.png') left top repeat-x;
 }
 
 #content {
 	position: relative;
 	width: 100%;
+	min-width: 800px;
 	height: calc(100% - 180px);
 	background-color: #e1eaf6;
 }
