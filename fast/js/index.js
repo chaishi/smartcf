@@ -308,7 +308,7 @@ var index = {};
 	
 	function menueScrollUp() {
 		var margin = $menueGroupList.css('marginTop');
-		var dis = parseInt( margin.slice(0, margin.length - 2) ) + 95;
+		var dis = parseInt( margin.slice(0, margin.length - 2) ) + 388;
 		if(dis > -6) {
 			dis = -6;
 		}
@@ -317,7 +317,7 @@ var index = {};
 	
 	function menueScrollDown() {
 		var margin = $menueGroupList.css('marginTop');
-		var dis = parseInt( margin.slice(0, margin.length - 2) ) - 95;
+		var dis = parseInt( margin.slice(0, margin.length - 2) ) - 388;
 		var tmp = $menueGroupList.height() - $('.menue-group-list-wrap').height();
 		if( tmp  < dis * -1) {
 			dis = tmp * (-1);
