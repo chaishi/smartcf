@@ -208,16 +208,8 @@ var appsDesk = {};
 	 * @description content应用程序
 	 ====================================================================================*/
 	
-	//content 高度自适应兼容性处理
-	function contentHeight () {
-		debugger
-		var height = document.body.scrollHeight || document.documentElement.scrollHeight;
-		$content.height(height - 180);
-	}
-	
 	//添加app应用到屏幕
 	function addAppToScreen(imgUrl, appTitle){
-		debugger
 		var appPages = $('.app-page');
 		var appList = $(appPages[nowScreen]).find('.app-list');
 		var html = '<div class="brick app-demo">'
@@ -231,8 +223,6 @@ var appsDesk = {};
 		addHoverEvent();
 		addClickToApp();
 		initDrag();
-		//添加新的app后，content内容变化，高度重新设置
-		contentHeight();
 	}
 	
 	//页面一开始，隐藏app列表管理； 点击关闭按钮，立即关闭app应用管理弹框
@@ -242,7 +232,6 @@ var appsDesk = {};
 	
 	//点击更多应用图标，弹出app列表管理框，并加载分类列表
 	function alertAppList() {
-		debugger
 		appManagerDom.style.visibility = 'visible';
 		getAppGroupList();
 		showAppSetting();
@@ -279,9 +268,6 @@ var appsDesk = {};
 				addHoverEvent();
 				addClickToApp();
 				initDrag();
-				//加载app列表后，content内容变多，大小改变
-				contentHeight();
-				//$('#content').height(document.body.scrollHeight - 180);
 			}
 		);
 	}

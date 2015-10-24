@@ -134,14 +134,6 @@ var index = {};
 			}
 		});
 	}
-	contentHeight();
-	//content 高度自适应兼容性处理
-	function contentHeight () {
-		$(window).resize(function() {
-			height = document.body.scrollHeight || document.documentElement.scrollHeight;
-			$content.height(height - 180);
-		});
-	}
 	
 	//设置当前日历
 	function setNowDate() {

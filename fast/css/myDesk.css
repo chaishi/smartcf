@@ -162,10 +162,9 @@
 
 .dialog-app-content {
 	position: absolute;
-	left: 50%;/*垂直水平居中*/
-	top: 50%;/*垂直水平居中*/
-	margin-left: -400px;/*垂直水平居中*/
-	margin-top: -200px;/*垂直水平居中*/
+	left: 50%;/*水平居中*/
+	top: 10%; 
+	margin-left: -400px;/*水平居中*/
 	width: 800px;
 	height: 400px;
 	background-color: #fff;
