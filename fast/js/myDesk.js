@@ -212,6 +212,10 @@ var appsDesk = {};
 	function addAppToScreen(imgUrl, appTitle){
 		var appPages = $('.app-page');
 		var appList = $(appPages[nowScreen]).find('.app-list');
+		if(appList.find('.app-demo').length >= 24) {
+			alert("该屏幕数量已经超过24，不能再添加！");
+			return;
+		}
 		var html = '<div class="brick app-demo">'
 				 +		'<button class="delete-btn">移除</button>'
 				 +		'<div class="app-img">'
