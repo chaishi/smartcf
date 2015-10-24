@@ -120,7 +120,9 @@ var index = {};
 	function showTagContent(select, title) {
 		var interfaceHtml = '';
 		switch(title) {
-			case '我的桌面': {interfaceHtml = interfaces.myDeskHtml;}break;
+			case '我的桌面': {
+				interfaceHtml = interfaces.myDeskHtml;
+			}break;
 			case '日程安排': interfaceHtml = interfaces.dailyHtml;break;
 			case '投票': interfaceHtml = interfaces.ticketsHtml;break;
 			default: interfaceHtml = interfaces.nothingHtml;break;
@@ -130,6 +132,9 @@ var index = {};
 			url:interfaceHtml, //interfaces.myDeskHtml,
 			success: function(data) {
 				$(select).html(data);
+				if(interfaceHtml == interfaces.myDeskHtml) {
+					loadJsFile('js/myDesk.js');
+				}
 			},
 			error: function() {
 				alert('标签页面加载失败！');
@@ -137,13 +142,10 @@ var index = {};
 		});
 	}
 	
-	//初始化拖拽
-	function initDrag() {
-		$('.gridly').gridly({
-		    base: 30, // px 
-		    gutter: 15, // px
-		    columns: 18
-		});
+	function loadJsFile(url) {
+		var script = document.createElement('script');
+		script.src = url;
+		document.body.appendChild(script);
 	}
 	
 	//设置当前日历
@@ -205,9 +207,6 @@ var index = {};
 		var contentId = $($('.taskbar-tab')[index]).attr('target-content');
 		hideAllTagContent();
 		$(contentId).show();
-		if(contentId === '#content_myDesk') {
-			initDrag();			
-		}
 	}
 	
 	//删除TAB
