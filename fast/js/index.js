@@ -24,12 +24,14 @@ var index = {};
 	var northCount = 0;
 	//用来TAB翻页
 	var nowTab = 0;
+	//tag内容编号， 每次新创建一个tag, 该变量就加1
+	var tagContentCount = 0;
 	
 	function init() {
 		setNowDate();
 		bindEvent();
 		getMenueGroup();
-		showTagContent('#content', '我的桌面');
+		showTagContent('#content_myDesk', '我的桌面');
 	}
 	
 	function bindEvent() {
@@ -56,12 +58,12 @@ var index = {};
 		
 		$('.menue-content-right').on('click', '.one-fast-app', function() {
 			var title = $(this).find('.fast-app-title').html();
-			index.addTag(title);
+			index.addTab(title);
 		});
 		
 		$('.menue-content-center').on('click', '.menue-one-app', function() {
 			var title = $(this).html();
-			index.addTag(title);
+			index.addTab(title);
 		});
 		
 		$taskbarCenter.on('click', 'span', deleteTab);
@@ -118,7 +120,7 @@ var index = {};
 	function showTagContent(select, title) {
 		var interfaceHtml = '';
 		switch(title) {
-			case '我的桌面': interfaceHtml = interfaces.myDeskHtml;break;
+			case '我的桌面': {interfaceHtml = interfaces.myDeskHtml;}break;
 			case '日程安排': interfaceHtml = interfaces.dailyHtml;break;
 			case '投票': interfaceHtml = interfaces.ticketsHtml;break;
 			default: interfaceHtml = interfaces.nothingHtml;break;
@@ -130,8 +132,17 @@ var index = {};
 				$(select).html(data);
 			},
 			error: function() {
-				alert('我的桌面加载失败！');
+				alert('标签页面加载失败！');
 			}
+		});
+	}
+	
+	//初始化拖拽
+	function initDrag() {
+		$('.gridly').gridly({
+		    base: 30, // px 
+		    gutter: 15, // px
+		    columns: 18
 		});
 	}
 	
@@ -191,8 +202,12 @@ var index = {};
 				$(this).find('span').removeClass('tab-close');
 			}
 		});
-		var title = $($('.taskbar-tab')[index]).find('a').html();
-		showTagContent('#content', title);
+		var contentId = $($('.taskbar-tab')[index]).attr('target-content');
+		hideAllTagContent();
+		$(contentId).show();
+		if(contentId === '#content_myDesk') {
+			initDrag();			
+		}
 	}
 	
 	//删除TAB
@@ -205,8 +220,11 @@ var index = {};
 			event.cancelBubble();
 		}
 		
-		var index0 = $(this).parent().index();
-		$(this).parent().remove();
+		var parent = $(this).parent();
+		var index0 = parent.index();
+		var contentId = parent.attr('target-content');
+		parent.remove();
+		$(contentId).remove();
 		if(index0 !== 0) {
 			index0--;
 		}
@@ -219,10 +237,13 @@ var index = {};
 	}
 	
 	//添加一个Tab
-	index.addTag = function(title) {
+	index.addTab = function(title) {
+		
+		var $taskbarTag = $('.taskbar-tab');
+		
 		//首先判断是否已经添加过
 		var flag = false;
-		$('.taskbar-tab').each(function() {
+		$taskbarTag.each(function() {
 			if($(this).find('a').html() == title ) {
 				flag = true;
 				return;
@@ -232,11 +253,22 @@ var index = {};
 			alert('该窗口已经添加！')
 			return;
 		}
-		var html = '<div class="taskbar-tab"><a class="tab">'+title+'</a><span></span></div>';
-		$taskbarCenter.append(html);
+		var len = $taskbarTag.length;
+		var tagFlagId = 'content_' + tagContentCount;
+		tagContentCount++;
 		
-		var len = $('.taskbar-tab').length;
-		index.setActiveTab(len - 1);
+		hideAllTagContent();
+		//创建 存放 该Tag的Html内容
+		var newTagHtml = '<div id="'+tagFlagId+'" class="content"> </div>';
+		$($('.content')[len - 1]).after(newTagHtml);
+		showTagContent('#' + tagFlagId, title);
+		//$(tagFlagId).show();
+		
+		//创建tag标签
+		var html = '<div class="taskbar-tab" target-content="#'+tagFlagId+'"><a class="tab">'+title+'</a><span></span></div>';
+		$taskbarCenter.append(html);
+		//设置最新Tag为激活状态
+		index.setActiveTab(len);
 		
 		//判断已经添加的TAB数量是否超出能够显示的范围
 		if( $('#taskbar-center').width() <= $('.taskbar-tab-wrap').width() ) {
@@ -254,7 +286,6 @@ var index = {};
 				$('.preTab').css({visibility: 'hidden'});
 				$('.nextTab').css({visibility: 'hidden'});
 			}
-			
 		});
 		
 		var tmp = (len - 1) * 83 + 103 - $('.taskbar-tab-wrap').width();
@@ -331,6 +362,11 @@ var index = {};
 				$('.menue-content-center').html(htmlArr.join(''));
 			}
 		);
+	}
+	
+	//隐藏所有标签的content
+	function hideAllTagContent() {
+		$('.content').hide();
 	}
 	
 	$(function(){

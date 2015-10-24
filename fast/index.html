@@ -2,10 +2,10 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
+		<title>首页</title>
 		<meta name="renderer" content="webkit|ie-comp|ie-stand">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>首页</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<link rel="stylesheet" href="css/index.css" />
 	</head>
 	<body class="win8_module_workflow">
@@ -104,17 +104,9 @@
 					<div class="taskbar-tab-wrap">
 					
 						<div id="taskbar-tab-list">
-							<div class="taskbar-tab taskbar-tab-active">
+							<div class="taskbar-tab taskbar-tab-active" target-content="#content_myDesk">
 								<a class="tab">我的桌面</a>
 								<span class="tab-close"></span>
-							</div>
-							<div class="taskbar-tab">
-								<a class="tab">日程安排</a>
-								<span></span>
-							</div>	
-							<div class="taskbar-tab">
-								<a class="tab">投票</a>
-								<span></span>
 							</div>
 						</div>
 					</div>
@@ -124,7 +116,7 @@
 			
 			<div id="funcbar"> </div>
 			
-			<div id="content"> </div>
+			<div id="content_myDesk" class="content"> </div>
 				
 			<div id="status">
 				<div class="online-people">在线3人</div>

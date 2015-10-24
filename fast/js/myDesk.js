@@ -132,7 +132,7 @@ var appsDesk = {};
 		$appList.unbind('dblclick');
 		$appList.on('dblclick', '.app-demo',function(){
 			var title = $(this).find('.app-title').html();
-			index.addTag(title);
+			index.addTab(title);
 		});
 	}
 	
@@ -212,8 +212,8 @@ var appsDesk = {};
 	function addAppToScreen(imgUrl, appTitle){
 		var appPages = $('.app-page');
 		var appList = $(appPages[nowScreen]).find('.app-list');
-		if(appList.find('.app-demo').length >= 24) {
-			alert("该屏幕数量已经超过24，不能再添加！");
+		if(appList.find('.app-demo').length >= 18) {
+			alert("该屏幕数量已经超过18，不能再添加！");
 			return;
 		}
 		var html = '<div class="brick app-demo">'
