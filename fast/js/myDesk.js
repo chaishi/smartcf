@@ -137,7 +137,7 @@ var appsDesk = {};
 	function circleEvent() {
 		$circlesParent.on('click', 'img', function(){
 			var index = $(this).index();
-			if(index < $('.app-guide img').length - 1) { // 因为最后一张图片不是小圆点，所以过滤掉
+			if(index > 0 && index < $('.app-guide img').length - 1) { // 因为最后一张图片不是小圆点，所以过滤掉
 				nowScreen = index - 1; //记录当前是第几屏
 				showScreenApps(index - 1); //因为第一张图片不是小圆点，所以减1
 				setMarginLeft(index - 1);
