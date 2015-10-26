@@ -214,7 +214,7 @@ var appsDesk = {};
 			return;
 		}
 		var html = '<div class="app-demo">'
-				 +		'<button class="delete-btn">移除</button>'
+				 +		'<img class="delete-btn" src="img/delete.png"/>'
 				 +		'<div class="app-img">'
 				 +			'<img src="'+imgUrl+'" alt="'+appTitle+'" />'
 				 +		'</div>'
@@ -257,7 +257,7 @@ var appsDesk = {};
 				var list = data.img;
 				for(var i = 0, len = list.length; i < len; i++) {
 					html = '<div class="app-demo">'
-						 +		'<button class="delete-btn">移除</button>'
+						 +		'<img class="delete-btn" src="img/delete.png"/>'
 						 +		'<div class="app-img">'
 						 +			'<img src="'+list[i].imgUrl+'" alt="'+list[i].imgTitle+'" />'
 						 +		'</div>'

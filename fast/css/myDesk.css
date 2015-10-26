@@ -76,6 +76,7 @@
 	width: 100px;
 	float: left;
 	margin: 7px;
+	position: relative;
 }
 
 .app-img {
@@ -109,13 +110,10 @@
 
 .delete-btn {
 	position: absolute;
-    padding: 2px 0px;
     z-index: 2;
-    width: 33px;
-    font-size: 12px;
-    color: #fff;
-    background-color: #EF3C3C;
-    border: 0;
+    width: 17px;
+    right: 7px;
+    top: -7px;
     display: none;
 }
 
