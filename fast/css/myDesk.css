@@ -19,12 +19,12 @@
  ================================================*/
 #moreApp {
 	opacity: .8;
-	filter: alpha(.8);
+	filter: alpha(opacity=80);
 }
 
 #moreApp:hover {
 	opacity: 1;
-	filter: alpha(.8);
+	filter: alpha(opacity=100);
 }
 
 .app-guide-wrap {
@@ -159,9 +159,19 @@
 	top: 0;
 	z-index: 5;
 	/*这种半透明不支持IE8*/
-	background: rgba(0, 0, 0, 0.6);
-	/*兼容IE8，半透明*/
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,endColorstr=#99000000);
+	background: #000;
+	opacity: 0.6;
+	filter: alpha(opacity=60);
+	-moz-opacity: 0.6;
+}
+
+.dialog-pannel-indemo {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 6;
 }
 
 .dialog-app-content {
