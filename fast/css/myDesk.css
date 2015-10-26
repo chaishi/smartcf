@@ -160,7 +160,10 @@
 	left: 0;
 	top: 0;
 	z-index: 5;
+	/*这种半透明不支持IE8*/
 	background: rgba(0, 0, 0, 0.6);
+	/*兼容IE8，半透明*/
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,endColorstr=#99000000);
 }
 
 .dialog-app-content {
