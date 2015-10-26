@@ -137,12 +137,6 @@ var index = {};
 		});
 	}
 	
-	//初始化拖拽
-	function initDrag() {
-		$( ".app-list" ).sortable();//初始化拖拽控件
-    	$( ".app-list" ).disableSelection();//禁止选择
-	}
-	
 	//设置当前日历
 	function setNowDate() {
 		var date = calendar.GetDateString();
@@ -202,9 +196,6 @@ var index = {};
 		var contentId = $($('.taskbar-tab')[index]).attr('target-content');
 		hideAllTagContent();
 		$(contentId).show();
-		if(contentId === '#content_myDesk') {
-			initDrag();			
-		}
 	}
 	
 	//删除TAB
