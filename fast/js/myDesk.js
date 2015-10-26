@@ -60,11 +60,8 @@ var appsDesk = {};
 	
 	//初始化拖拽
 	function initDrag() {
-		$('.gridly').gridly({
-		    base: 30, // px 
-		    gutter: 15, // px
-		    columns: 18
-		});
+		$( ".app-list" ).sortable();//初始化拖拽控件
+    	$( ".app-list" ).disableSelection();//禁止选择
 	}
 	 
 	/* ====================================================================================
@@ -212,11 +209,11 @@ var appsDesk = {};
 	function addAppToScreen(imgUrl, appTitle){
 		var appPages = $('.app-page');
 		var appList = $(appPages[nowScreen]).find('.app-list');
-		if(appList.find('.app-demo').length >= 18) {
-			alert("该屏幕数量已经超过18，不能再添加！");
+		if(appList.find('.app-demo').length >= 21) {
+			alert("该屏幕数量已经超过21，不能再添加！");
 			return;
 		}
-		var html = '<div class="brick app-demo">'
+		var html = '<div class="app-demo">'
 				 +		'<button class="delete-btn">移除</button>'
 				 +		'<div class="app-img">'
 				 +			'<img src="'+imgUrl+'" alt="'+appTitle+'" />'
@@ -259,7 +256,7 @@ var appsDesk = {};
 				var htmlArr = [];
 				var list = data.img;
 				for(var i = 0, len = list.length; i < len; i++) {
-					html = '<div class="brick app-demo">'
+					html = '<div class="app-demo">'
 						 +		'<button class="delete-btn">移除</button>'
 						 +		'<div class="app-img">'
 						 +			'<img src="'+list[i].imgUrl+'" alt="'+list[i].imgTitle+'" />'

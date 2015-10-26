@@ -65,7 +65,8 @@
  * @description 某一个app相关样式
  =============================*/
 
-.app-pages:after {
+.app-pages:after,
+.app-list:after {
 	content: "";
 	display: table;
 	clear: both;
@@ -73,6 +74,8 @@
 
 .app-demo {
 	width: 100px;
+	float: left;
+	margin: 7px;
 }
 
 .app-img {

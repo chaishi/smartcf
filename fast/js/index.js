@@ -139,11 +139,8 @@ var index = {};
 	
 	//初始化拖拽
 	function initDrag() {
-		$('.gridly').gridly({
-		    base: 30, // px 
-		    gutter: 15, // px
-		    columns: 18
-		});
+		$( ".app-list" ).sortable();//初始化拖拽控件
+    	$( ".app-list" ).disableSelection();//禁止选择
 	}
 	
 	//设置当前日历
