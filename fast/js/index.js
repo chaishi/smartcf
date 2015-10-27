@@ -258,27 +258,32 @@ var index = {};
 		//设置最新Tag为激活状态
 		index.setActiveTab(len);
 		
-		//判断已经添加的TAB数量是否超出能够显示的范围
-		if( $('#taskbar-center').width() <= $('.taskbar-tab-wrap').width() ) {
-			$('.preTab').css({visibility: 'visible'});
-			$('.nextTab').css({visibility: 'visible'});
-		}
+		showPreNextTri();
 		$(window).resize(function() {
 			//判断已经添加的TAB数量是否超出能够显示的范围
-			if( $('#taskbar-center').width() <= $('.taskbar-tab-wrap').width() ) {
-				$('.preTab').css({visibility: 'visible'});
-				$('.nextTab').css({visibility: 'visible'});
-				nowTab = 0;
-				$taskbarCenter.css({marginLeft: 0});
-			}else {
-				$('.preTab').css({visibility: 'hidden'});
-				$('.nextTab').css({visibility: 'hidden'});
-			}
+			showPreNextTri();
 		});
 		
 		var tmp = (len - 1) * 83 + 103 - $('.taskbar-tab-wrap').width();
 		$taskbarCenter.animate({marginLeft: '-' + tmp + 'px'});
 		nowTab = Math.ceil(tmp / 80) * (-1);
+	}
+	
+	//显示Tab标签左右的小三角形,判断已经添加的TAB数量是否超出能够显示的范围
+	function showPreNextTri() {
+		if( $('#taskbar-center').width() <= $('.taskbar-tab-wrap').width() ) {
+			$('.preTab').css({visibility: 'visible'});
+			$('.nextTab').css({visibility: 'visible'});
+			nowTab = 0;
+			$taskbarCenter.css({marginLeft: 0});
+		}else {
+			$('.preTab').css({visibility: 'hidden'});
+			$('.nextTab').css({visibility: 'hidden'});
+			if(window.document.body.offsetWidth === window.screen.width) {
+				nowTab = 0;
+				$taskbarCenter.css({marginLeft: 0});
+			}
+		}
 	}
 	
 	//menue
