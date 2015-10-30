@@ -53,7 +53,6 @@ var appsDesk = {};
 	page.init = function() {
 		page.bindEvent();
 		showScreenApps(0);
-		showScreenApps(1);
 		setMarginLeft(0);
 		setScreenSetting();
 	}
@@ -196,8 +195,9 @@ var appsDesk = {};
 			var me = $(this);
 			var imgUrl = me.find('img').attr('src');
 			var appTitle = me.find('.one-app-title').html();
+			var appId = me.attr('data-id');
 			me.remove();
-			addAppToScreen(imgUrl, appTitle);
+			addAppToScreen(imgUrl, appTitle, appId);
 		});
 	}
 	
@@ -206,14 +206,14 @@ var appsDesk = {};
 	 ====================================================================================*/
 	
 	//添加app应用到屏幕
-	function addAppToScreen(imgUrl, appTitle){
+	function addAppToScreen(imgUrl, appTitle, appId){
 		var appPages = $('.app-page');
 		var appList = $(appPages[nowScreen]).find('.app-list');
 		if(appList.find('.app-demo').length >= 21) {
 			alert("该屏幕数量已经超过21，不能再添加！");
 			return;
 		}
-		var html = '<div class="app-demo">'
+		var html = '<div class="app-demo" data-id="'+appId+'">'
 				 +		'<img class="delete-btn" src="img/delete.png"/>'
 				 +		'<div class="app-img">'
 				 +			'<img src="'+imgUrl+'" alt="'+appTitle+'" />'
@@ -243,7 +243,9 @@ var appsDesk = {};
 	 * @param {number} index = 0, margin-left = -100% 显示低易品； index = 1, margin-left = -200%，显示第二屏……
 	 */
 	function showScreenApps(index) {
-		
+		if($($('.app-list')[index]).find('.app-demo')[0]) {
+			return;
+		}
 		//获取applist
 		$.getJSON(
 			interfaces.getApps,
@@ -256,7 +258,7 @@ var appsDesk = {};
 				var htmlArr = [];
 				var list = data.img;
 				for(var i = 0, len = list.length; i < len; i++) {
-					html = '<div class="app-demo">'
+					html = '<div class="app-demo" data-id="'+list[i].imgId+'">'
 						 +		'<img class="delete-btn" src="img/delete.png"/>'
 						 +		'<div class="app-img">'
 						 +			'<img src="'+list[i].imgUrl+'" alt="'+list[i].imgTitle+'" />'
@@ -353,7 +355,7 @@ var appsDesk = {};
 				var htmlArr = [];
 				var list = data.img;
 				for(var i = 0, len = list.length; i < len; i++) {
-					html = '<div class="group-one-app">'
+					html = '<div class="group-one-app" data-id="110">'
 						 +		'<div class="one-app-img">'
 						 +				'<img src="http://42.96.175.100/static/theme/15/images/app_icons/calendar.png" align="日程安排">'
 						 +			'</div>'
