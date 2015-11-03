@@ -59,7 +59,11 @@ var appsDesk = {};
 	
 	//初始化拖拽
 	function initDrag() {
-		$( ".app-list" ).sortable();//初始化拖拽控件
+		$( ".app-list" ).sortable({
+			stop: function() {
+				saveDragPosition();
+			}
+		});//初始化拖拽控件
     	$( ".app-list" ).disableSelection();//禁止选择
 	}
 	 
@@ -273,6 +277,24 @@ var appsDesk = {};
 				initDrag();
 			}
 		);
+	}
+	
+	//每一次拖拽后保存拖拽的位置
+	function saveDragPosition() {
+		var idArr = [];
+		$('.app-demo').each(function() {
+			idArr.push($(this).attr('data-id'));
+		});
+		$.ajax({
+			type: "post",
+			url: interfaces.saveDragPosition,
+			success: function() {
+				alert("保存成功！");
+			},
+			error: function() {
+				alert("保存失败！");
+			}
+		});
 	}
 	
 	//设置左外边距
@@ -499,5 +521,4 @@ var appsDesk = {};
 	page.init();
 	
 })(appsDesk);
-
 

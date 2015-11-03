@@ -17,3 +17,6 @@ interfaces.getApps = 'json/app.json';
 
 /*获取app分类列表*/
 interfaces.getAppGroupList = 'json/group1.json';
+
+/*保存app列表位置*/
+interfaces.saveDragPosition = 'save.action';
