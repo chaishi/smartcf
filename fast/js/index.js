@@ -25,13 +25,13 @@ var index = {};
 	//用来TAB翻页
 	var nowTab = 0;
 	//tag内容编号， 每次新创建一个tag, 该变量就加1
-	var tagContentCount = 0;
+	var tagContentCount = 1;
 	
 	function init() {
 		setNowDate();
 		bindEvent();
 		getMenueGroup();
-		showTagContent('#content_myDesk', '我的桌面');
+		showTagContent('#content_0', '我的桌面');
 	}
 	
 	function bindEvent() {
@@ -248,9 +248,9 @@ var index = {};
 		hideAllTagContent();
 		//创建 存放 该Tag的Html内容
 		var newTagHtml = '<div id="'+tagFlagId+'" class="content"> </div>';
-		$($('.content')[len - 1]).after(newTagHtml);
+		$('#funcbar').after(newTagHtml);
 		showTagContent('#' + tagFlagId, title);
-		//$(tagFlagId).show();
+		$('#' + tagFlagId).show();
 		
 		//创建tag标签
 		var html = '<div class="taskbar-tab" target-content="#'+tagFlagId+'"><a class="tab">'+title+'</a><span></span></div>';
