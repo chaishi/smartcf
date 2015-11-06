@@ -76,7 +76,7 @@
 .app-demo {
 	float: left;
 	width: 100px;
-	margin: 10px 3%;
+	margin: 10px 1%;
 	position: relative;
 }
 
@@ -135,6 +135,7 @@
 .app-page {
 	float: left;
 	width: 50%;
+	min-height: 327px;
 	text-align: center;
 }
 
@@ -148,8 +149,7 @@
 
 /*默认隐藏appa管理弹框*/
 #appManager {
-	visibility: hidden;
-	height: 100%;
+	display: none;
 }
 
 /*弹框蒙版*/
@@ -290,7 +290,7 @@
 
 .dialog-app-list {
 	margin-left: 120px;
-	height: 77%;
+	height: 302px;
 	padding: 1% 0 0 20px;
 	position: absolute;
 	left: 1px;right: 0;

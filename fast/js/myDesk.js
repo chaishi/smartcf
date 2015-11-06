@@ -6,6 +6,7 @@
  * ======================================================================
  */
 
+
 var appsDesk = {};
 
 (function(page){
@@ -33,6 +34,7 @@ var appsDesk = {};
 	//弹框中，分屏设置，提示信息显示Dom
 	var $warningInfo = $('.warning-info');
 	var $content = $('#content');
+	var $appPages = $('#app-pages');
 	//flag用于标记弹框中，当前分组列表是第几批
 	var flag = 0;
 	//flagMax 表示分组列表一共有多少批
@@ -52,9 +54,8 @@ var appsDesk = {};
 	//页面初始化函数
 	page.init = function() {
 		page.bindEvent();
-		showScreenApps(0);
+		showDesckApps();
 		setMarginLeft(0);
-		setScreenSetting();
 	}
 	
 	//初始化拖拽
@@ -82,17 +83,7 @@ var appsDesk = {};
 		dialogFuncChangeEvent();
 		dialogSideBarEvent();
 		dialogAppListEvent();
-		
-		$appList.on('click', '.delete-btn',function(event){
-			event = event || window.event;
-			if(event.stopPropagation){
-				event.stopPropagation();
-			}else if(event.cancelBubble) {
-				event.cancelBubble();
-			}
-			$(this).parent().remove();
-		});
-		
+		appListDeleteEvent();
 		addHoverEvent();
 		addClickToApp();
 	}
@@ -109,13 +100,13 @@ var appsDesk = {};
 	//弹框中，分屏设置，用户点击删除按钮事件
 	function screenDeleteEvent() {
 		$screenSetting.unbind('click'); //先清除之前的点击事件
-		$screenSetting.on('click', 'button', function(){
-			var index = $(this).index();
-			if(confirm('确认删除该屏幕吗？')) {
-				$(this).parent().parent().remove();	
-				deleteScreen(index);
-			}
-		});
+		$screenSetting.on('click', 'button', deleteScreen);
+	}
+	
+	//appList中app删除事件
+	function appListDeleteEvent() {
+		$('.app-list').unbind('click');
+		$('.app-list').on('click', '.delete-btn', removeAppFromScreen);
 	}
 	
 	//鼠标悬浮在某个app上面时，出现删除按钮
@@ -209,6 +200,31 @@ var appsDesk = {};
 	 * @description content应用程序
 	 ====================================================================================*/
 	
+	
+	//获取屏幕序号列表
+	function showDesckApps() {
+		$.getJSON(
+			interfaces.getScreenIdList,
+			function(data) {
+				var ids = data.screenIdList;
+				screenNum = ids.length;
+				//增加$('.app-pages')宽度，每一屏的宽度为 1/screenNum
+				$('.app-pages').width(screenNum * 100 + '%');
+				for(var i = 0; i < screenNum; i ++) {
+					if(i === 0) {
+						$('#moreApp').before('<img src="http://42.96.175.100/static/theme/15/images/slidebox/2.png"/>');
+					}else {
+						$('#moreApp').before('<img src="http://42.96.175.100/static/theme/15/images/slidebox/3.png"/>');
+					}
+					$appPages.append('<div class="app-page"><div class="app-list"></div></div>');
+					$('.app-page').width(Math.floor(1/screenNum * 100) + '%');
+					showScreenApps(i);
+				}
+				setScreenSetting(ids);
+			}	
+		);
+	}
+	
 	//添加app应用到屏幕
 	function addAppToScreen(imgUrl, appTitle, appId){
 		var appPages = $('.app-page');
@@ -227,17 +243,28 @@ var appsDesk = {};
 		appList.append(html);
 		addHoverEvent();
 		addClickToApp();
+		appListDeleteEvent();
 		initDrag();
+	}
+	
+	function removeAppFromScreen(event) {
+		event = event || window.event;
+		if(event.stopPropagation){
+			event.stopPropagation();
+		}else if(event.cancelBubble) {
+			event.cancelBubble();
+		}
+		$(this).parent().remove();
 	}
 	
 	//页面一开始，隐藏app列表管理； 点击关闭按钮，立即关闭app应用管理弹框
 	function hidePannel() {
-		appManagerDom.style.visibility = 'hidden';
+		appManagerDom.style.display = 'none';
 	}
 	
 	//点击更多应用图标，弹出app列表管理框，并加载分类列表
 	function alertAppList() {
-		appManagerDom.style.visibility = 'visible';
+		appManagerDom.style.display = 'block';
 		getAppGroupList();
 		showAppSetting();
 	}
@@ -274,6 +301,7 @@ var appsDesk = {};
 				appList.html(htmlArr.join(''));
 				addHoverEvent();
 				addClickToApp();
+				appListDeleteEvent();
 				initDrag();
 			}
 		);
@@ -420,84 +448,136 @@ var appsDesk = {};
 	
 	
 	//弹框中，屏幕设置，显示屏幕数量
+	// @param {Array} ids 屏幕序号列表
 	function setScreenSetting() {
+		var ids = arguments[0];
 		var html = '';
 		var htmlArr = [];
-		for(var i = 0; i < screenNum; i++) {
-			html = '<div class="screen-num">'
-				+		'<div class="screen-num-in">'
-				+			'<button>删除</button>'
-				+			'<span>'+(i + 1)+'</span>'
-				+		'</div>'
-				+	'</div>';
-			htmlArr.push(html);		
+		if(ids) {//ids为真，表示第一次加载
+			for(var i = 0; i < screenNum; i++) {
+				html = '<div class="screen-num">'
+					+		'<div class="screen-num-in">'
+					+			'<button data-id="'+ids[i]+'">删除</button>'
+					+			'<span>'+(i + 1)+'</span>'
+					+		'</div>'
+					+	'</div>';
+				htmlArr.push(html);
+			}
+			htmlArr.push('<div class="screen-add">+</div>');
+			$('.screen-setting').html(htmlArr.join(''));
+			$('.screen-add').click(function(){addScreen();});
+			//添加浮动事件
+			screenHoverEvent();
+			//给删除按钮添加事件
+			screenDeleteEvent();
+		}else {//ids为假，只需更新html显示内容
+			$('.screen-setting button').each(function(i) {
+				$(this).parent().find('span').html(i + 1);
+			});
 		}
-		htmlArr.push('<div class="screen-add">+</div>');
-		$('.screen-setting').html(htmlArr.join(''));
-		$('.screen-add').click(function(){addScreen();});
-		//添加浮动事件
-		screenHoverEvent();
-		//给删除按钮添加事件
-		screenDeleteEvent();
 	}
 	
 	//添加屏幕
 	function addScreen() {
-		if(screenNum < 6) {
-			screenNum++; //屏幕总数加1
+		if(screenNum < 5) {
+			screenNum++; //屏幕总数加1，屏幕数量超出5个，将无法正常显示
 			nowScreen = screenNum - 1;
 		}else {
 			alert('屏幕数量已超限，不能再添加！')
 			return;
 		}
-		html = '<div class="screen-num">'
-				+		'<div class="screen-num-in">'
-				+			'<button>删除</button>'
-				+			'<span>'+screenNum+'</span>'
-				+		'</div>'
-				+	'</div>';
-		$('.screen-add').before(html);
 		
-		addCircle();
-		//对应小圆点显示为紫色
-		setActiveCircle(screenNum - 1);
+		var screenId = 110;
 		
-		//增加$('.app-pages')宽度，每一屏的宽度为 1/screenNum
-		$('.app-pages').width(screenNum * 100 + '%');
-		
-		//在桌面上面添加新的屏幕
-		$('#app-pages').append('<div class="app-page"><div class="gridly app-list"></div></div>');
-		$('.app-page').width(Math.floor(1/screenNum * 100) + '%');
-		
-		//设置左外边距，即设置显示哪一个屏幕
-		var marginLeft = (screenNum - 1) * -100;
-		var $appPages = $('.app-pages');
-		$appPages.animate({'marginLeft': marginLeft + '%'});
-		
-		//添加浮动事件
-		screenHoverEvent();
-		//给删除按钮添加事件
-		screenDeleteEvent();
-		
-		$warningInfo.html('屏幕添加成功！');
+		$.ajax({
+			type:"post",
+			url: interfaces.addScreen,
+			success: function(data) {
+				screenId = data.screenId;
+				html = '<div class="screen-num">'
+						+		'<div class="screen-num-in">'
+						+			'<button data-id="'+screenId+'">删除</button>'
+						+			'<span>'+screenNum+'</span>'
+						+		'</div>'
+						+	'</div>';
+				$('.screen-add').before(html);
+				
+				addCircle();
+				//对应小圆点显示为紫色
+				setActiveCircle(screenNum - 1);
+				
+				//增加$('.app-pages')宽度，每一屏的宽度为 1/screenNum
+				$('.app-pages').width(screenNum * 100 + '%');
+				
+				//在桌面上面添加新的屏幕
+				$('#app-pages').append('<div class="app-page"><div class="gridly app-list"></div></div>');
+				$('.app-page').width(Math.floor(1/screenNum * 100) + '%');
+				
+				//设置左外边距，即设置显示哪一个屏幕
+				var marginLeft = (screenNum - 1) * -100;
+				var $appPages = $('.app-pages');
+				$appPages.animate({'marginLeft': marginLeft + '%'});
+				
+				//添加浮动事件
+				screenHoverEvent();
+				//给删除按钮添加事件
+				screenDeleteEvent();
+				
+				$warningInfo.html('屏幕添加成功！');
+			},
+			error: function() {
+				alert("添加失败！")
+			}
+		});
 	}
 	
 	//删除屏幕
-	function deleteScreen(index) {
-		screenNum--;
-		$warningInfo.html('屏幕删除成功！');
+	function deleteScreen() {
+		if(!confirm('确认删除该屏幕吗？')) {
+			return;	
+		}
+		/*待删除屏幕的id*/
+		var screenId = $(this).attr('data-id');
+		//待删除屏幕的下标
+		var index = Math.ceil($(this).parent().parent().index() / 2);
+		
+		//根据屏幕id删除屏幕，同时删除属于该屏幕的appList
+		$.ajax({
+			type: "post",
+			data: {
+				screenId: screenId 
+			},
+			url: interfaces.deleteScreen,
+			success: function() {
+				$warningInfo.html('屏幕删除成功！');
+			},
+			error: function() {
+				$warningInfo.html('屏幕删除失败！');
+			}
+		});
+		
+		//移除当前屏幕框
+		$(this).parent().parent().remove();	
+		//屏幕框下标刷新
 		setScreenSetting();
 		//移除桌面上的屏幕
 		$($('.app-page')[index]).remove();
 		//移除小圆点
-		removeCircle(index + 1);
-		setActiveCircle(index);
+		removeCircle(parseInt(index) + 1);
+		//屏幕删除成功后，总屏幕数量减1
+		screenNum--;
+		
 		//屏幕数量改变之后，样式需要重新调整
 		$('.app-pages').width(screenNum * 100 + '%');
 		$('.app-page').width(Math.floor(1/screenNum * 100) + '%');
-		var marginLeft = (screenNum - 1) * -100;
+		if(index == 0) {
+			index = 1;
+		}
+		var marginLeft = (index - 1) * -100;
 		var $appPages = $('.app-pages');
 		$appPages.animate({'marginLeft': marginLeft + '%'});
+		
+		setActiveCircle(index - 1);
 	}
 	
 	//添加屏幕的同时，增加小圆点
@@ -514,7 +594,7 @@ var appsDesk = {};
 	 */
 	function removeCircle(index) {
 		var parentDom = moreAppDom.parentNode;
-		var imgs = document.getElementsByTagName('img');
+		var imgs = parentDom.getElementsByTagName('img');
 		parentDom.removeChild(imgs[index]);
 	}
 	

@@ -20,3 +20,12 @@ interfaces.getAppGroupList = 'json/group1.json';
 
 /*保存app列表位置*/
 interfaces.saveDragPosition = 'save.action';
+
+/*获取屏幕序号列表*/
+interfaces.getScreenIdList = 'json/screenIdList.json';
+
+/*添加屏幕*/
+interfaces.addScreen = 'addScreen.action';
+
+/*删除屏幕*/
+interfaces.deleteScreen = 'deleteScreen.action';
