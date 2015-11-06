@@ -130,10 +130,12 @@ var appsDesk = {};
 	//为小圆点代理事件处理程序，点击小圆点，app列表跳转到对应屏幕
 	function circleEvent() {
 		$circlesParent.on('click', 'img', function(){
-			var index = $(this).index();
+			var me = $(this);
+			var index = me.index();
 			if(index > 0 && index < $('.app-guide img').length - 1) { // 因为最后一张图片不是小圆点，所以过滤掉
 				nowScreen = index - 1; //记录当前是第几屏
-				showScreenApps(index - 1); //因为第一张图片不是小圆点，所以减1
+				var screenId = me.attr('data-id');
+				showScreenApps(index - 1, screenId); //因为第一张图片不是小圆点，所以减1
 				setMarginLeft(index - 1);
 				//对应小圆点显示为紫色
 				setActiveCircle(index - 1);
@@ -206,19 +208,22 @@ var appsDesk = {};
 		$.getJSON(
 			interfaces.getScreenIdList,
 			function(data) {
+				if(!data) {
+					return;
+				}
 				var ids = data.screenIdList;
 				screenNum = ids.length;
 				//增加$('.app-pages')宽度，每一屏的宽度为 1/screenNum
 				$('.app-pages').width(screenNum * 100 + '%');
 				for(var i = 0; i < screenNum; i ++) {
 					if(i === 0) {
-						$('#moreApp').before('<img src="http://42.96.175.100/static/theme/15/images/slidebox/2.png"/>');
+						$('#moreApp').before('<img data-id="'+ids[i]+'" src="http://42.96.175.100/static/theme/15/images/slidebox/2.png"/>');
 					}else {
-						$('#moreApp').before('<img src="http://42.96.175.100/static/theme/15/images/slidebox/3.png"/>');
+						$('#moreApp').before('<img data-id="'+ids[i]+'" src="http://42.96.175.100/static/theme/15/images/slidebox/3.png"/>');
 					}
 					$appPages.append('<div class="app-page"><div class="app-list"></div></div>');
 					$('.app-page').width(Math.floor(1/screenNum * 100) + '%');
-					showScreenApps(i);
+					showScreenApps(i, ids[i]);
 				}
 				setScreenSetting(ids);
 			}	
@@ -273,7 +278,7 @@ var appsDesk = {};
 	 * @description 根据屏幕下标显示对应的app列表
 	 * @param {number} index = 0, margin-left = -100% 显示低易品； index = 1, margin-left = -200%，显示第二屏……
 	 */
-	function showScreenApps(index) {
+	function showScreenApps(index, screenId) {
 		if($($('.app-list')[index]).find('.app-demo')[0]) {
 			return;
 		}
@@ -281,7 +286,7 @@ var appsDesk = {};
 		$.getJSON(
 			interfaces.getApps,
 			{
-				index: index
+				screenId: screenId
 			}, 
 			function(data) {
 				var appList = $($('.app-page')[index]).find('.app-list');
