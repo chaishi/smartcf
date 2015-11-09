@@ -221,7 +221,7 @@ var appsDesk = {};
 					}else {
 						$('#moreApp').before('<img data-id="'+ids[i]+'" src="http://42.96.175.100/static/theme/15/images/slidebox/3.png"/>');
 					}
-					$appPages.append('<div class="app-page"><div class="app-list"></div></div>');
+					$appPages.append('<div class="app-page" screen-id="'+ids[i]+'"><div class="app-list"></div></div>');
 					$('.app-page').width(Math.floor(1/screenNum * 100) + '%');
 					showScreenApps(i, ids[i]);
 				}
@@ -315,11 +315,20 @@ var appsDesk = {};
 	//每一次拖拽后保存拖拽的位置
 	function saveDragPosition() {
 		var idArr = [];
-		$('.app-demo').each(function() {
+		var appPage = $('.app-page').eq(nowScreen);
+		var apps = appPage.find('.app-demo');
+		apps.each(function() {
 			idArr.push($(this).attr('data-id'));
 		});
+		var ids = idArr.join();
+		var screenIndex = appPage.attr('screen-id');//保存在哪里的？
+		alert(screenIndex);
 		$.ajax({
 			type: "post",
+			data: {
+				screenIndex: screenIndex,
+				ids: ids
+			},
 			url: interfaces.saveDragPosition,
 			success: function() {
 				alert("保存成功！");
